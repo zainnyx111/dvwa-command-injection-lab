@@ -118,7 +118,6 @@ pwd
 ls
 ```
 
-> 📸 **Insert Screenshot Here:** *Shell interaction from Kali*
 
 ---
 
