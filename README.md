@@ -1,9 +1,5 @@
 # 🔥 DVWA Remote Code Execution (RCE) Walkthrough
 
-This guide documents the complete step-by-step process of exploiting **Command Injection / RCE** on **Damn Vulnerable Web Application (DVWA)**. It is written in a clean, professional, GitHub‑ready format with clear explanations and dedicated spaces where you can paste your screenshots.
-
----
-
 # 📌 **Overview**
 
 Remote Code Execution (RCE) is one of the most dangerous web vulnerabilities. It allows an attacker to execute system commands directly on the target server.
